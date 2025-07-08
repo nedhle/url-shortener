@@ -1,0 +1,24 @@
+# Maven & Gradle
+/target/
+/.mvn/
+.idea/
+*.iml
+
+# Kotlin & Java
+out/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Test reports
+**/surefire-reports/
+
+# IDE settings
+/.vscode/
+
+# Temporary
+*.swp
