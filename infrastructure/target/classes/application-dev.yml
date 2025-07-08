@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/urlshortener_dev
+    username: urlshortener
+    password: urlshortener
+    driver-class-name: org.postgresql.Driver
+  redis:
+    host: localhost
+    port: 6379
+    password:
+    database: 1
+    timeout: 2000
+
+cache:
+  ttl-minutes: ${CACHE_TTL_MINUTES:3}

@@ -1,0 +1,42 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password: 
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    database-platform: org.hibernate.dialect.H2Dialect
+  redis:
+    host: localhost
+    port: 6379
+    database: 1
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+
+# Test-specific configurations
+logging:
+  level:
+    com.urlshortener: DEBUG
+    org.springframework: WARN
+    org.hibernate: WARN
+
+# Disable actuator endpoints in tests
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: never
+
+# Disable Swagger in tests
+springdoc:
+  swagger-ui:
+    enabled: false
+  api-docs:
+    enabled: false 

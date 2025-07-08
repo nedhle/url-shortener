@@ -1,0 +1,54 @@
+openapi: 3.0.1
+info:
+  title: URL Shortener API
+  version: 1.0.0
+paths:
+  /api:
+    post:
+      summary: Create a short URL
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                originalUrl:
+                  type: string
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  originalUrl:
+                    type: string
+                  shortCode:
+                    type: string
+  /api/{shortCode}:
+    get:
+      summary: Resolve a short URL
+      parameters:
+        - in: path
+          name: shortCode
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  originalUrl:
+                    type: string
+                  shortCode:
+                    type: string 
