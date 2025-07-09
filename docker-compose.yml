@@ -36,8 +36,8 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/urlshortener_dev
       SPRING_DATASOURCE_USERNAME: urlshortener
       SPRING_DATASOURCE_PASSWORD: urlshortener
-      SPRING_REDIS_HOST: redis
-      SPRING_REDIS_PORT: 6379
+      SPRING_DATA_REDIS_HOST: redis
+      SPRING_DATA_REDIS_PORT: 6379
       # Set the active Spring profile (dev, staging, prod)
       SPRING_PROFILES_ACTIVE: dev
       # For staging, uncomment the following line:
