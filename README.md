@@ -30,6 +30,8 @@ A high-performance URL shortening service built with:
 
 ## API Endpoints
 
+Explore the API documentation using Swagger UI: http://localhost:8080/swagger-ui.html
+
 ### Create Short URL
 ```http
 POST /api
@@ -42,7 +44,7 @@ Content-Type: application/json
 
 ### Resolve Short URL
 ```http
-GET /{shortCode}
+GET /api/{shortCode}
 ```
 
 ## Environment Variables
@@ -82,15 +84,15 @@ The application includes Actuator endpoints for monitoring:
    - *Bottleneck*: High volume of URL resolution requests hitting the database
    - *Solution*: Multi-level caching with Redis in front of the database
 
-2**URL Generation Collisions**
+2. **URL Generation Collisions**
    - *Bottleneck*: Duplicate short codes during high concurrency
    - *Solution*: SnowflakeId generation
 
-3**Rate Limiting**
+3. **Rate Limiting**
    - *Bottleneck*: Potential for abuse through excessive API calls
    - *Solution*: Implement rate limiting (e.g., using Spring Cloud Gateway or Redis)
 
-4**Scalability**
+4. **Scalability**
    - *Bottleneck*: Single point of failure in database
    - *Solution*: Database read replicas and connection pooling
 
