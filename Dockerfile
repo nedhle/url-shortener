@@ -10,4 +10,4 @@ COPY infrastructure/target/infrastructure-1.0.0-SNAPSHOT.jar app.jar
 EXPOSE 8080
 
 # Run the jar file
-ENTRYPOINT ["sh", "-c", "java -jar app.jar --spring.profiles.active=${SPRING_PROFILES_ACTIVE:-dev}"]
+ENTRYPOINT sh -c 'java -jar app.jar --spring.profiles.active=${SPRING_PROFILES_ACTIVE:-dev}'
