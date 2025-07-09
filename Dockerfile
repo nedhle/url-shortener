@@ -1,13 +1,29 @@
+# ---------- STAGE 1: Build ----------
+FROM maven:3.9.6-eclipse-temurin-17-alpine AS builder
+
+WORKDIR /build
+
+COPY pom.xml .
+COPY domain/pom.xml domain/pom.xml
+COPY infrastructure/pom.xml infrastructure/pom.xml
+
+# Preload dependencies for all modules
+RUN mvn dependency:go-offline validate
+
+# Copy source
+COPY . .
+
+# Build all modules
+RUN mvn clean package -DskipTests
+
+# ---------- STAGE 2: Run ----------
 FROM eclipse-temurin:17-jdk-alpine
 
-# Set the working directory
 WORKDIR /app
 
-# Copy the built jar from the infrastructure/target directory
-COPY infrastructure/target/infrastructure-1.0.0-SNAPSHOT.jar app.jar
+# Copy the JAR from the builder stage
+COPY --from=builder /build/infrastructure/target/infrastructure-1.0.0-SNAPSHOT.jar app.jar
 
-# Expose the port the app runs on
 EXPOSE 8080
 
-# Run the jar file
 ENTRYPOINT sh -c 'java -jar app.jar --spring.profiles.active=${SPRING_PROFILES_ACTIVE:-dev}'
